@@ -1,0 +1,1016 @@
+{
+ "22": {
+  "combos": 6,
+  "equity": 0.5093,
+  "pct": 0.54,
+  "rank": 82
+ },
+ "32o": {
+  "combos": 12,
+  "equity": 0.3208,
+  "pct": 0.0,
+  "rank": 169
+ },
+ "32s": {
+  "combos": 4,
+  "equity": 0.3603,
+  "pct": 0.0543,
+  "rank": 163
+ },
+ "33": {
+  "combos": 6,
+  "equity": 0.5354,
+  "pct": 0.632,
+  "rank": 68
+ },
+ "42o": {
+  "combos": 12,
+  "equity": 0.3288,
+  "pct": 0.009,
+  "rank": 168
+ },
+ "42s": {
+  "combos": 4,
+  "equity": 0.3627,
+  "pct": 0.0754,
+  "rank": 160
+ },
+ "43o": {
+  "combos": 12,
+  "equity": 0.3499,
+  "pct": 0.0452,
+  "rank": 164
+ },
+ "43s": {
+  "combos": 4,
+  "equity": 0.3802,
+  "pct": 0.1267,
+  "rank": 153
+ },
+ "44": {
+  "combos": 6,
+  "equity": 0.5711,
+  "pct": 0.7421,
+  "rank": 48
+ },
+ "52o": {
+  "combos": 12,
+  "equity": 0.3416,
+  "pct": 0.0271,
+  "rank": 166
+ },
+ "52s": {
+  "combos": 4,
+  "equity": 0.376,
+  "pct": 0.1056,
+  "rank": 156
+ },
+ "53o": {
+  "combos": 12,
+  "equity": 0.3633,
+  "pct": 0.0784,
+  "rank": 159
+ },
+ "53s": {
+  "combos": 4,
+  "equity": 0.3974,
+  "pct": 0.1659,
+  "rank": 146
+ },
+ "54o": {
+  "combos": 12,
+  "equity": 0.3766,
+  "pct": 0.1086,
+  "rank": 155
+ },
+ "54s": {
+  "combos": 4,
+  "equity": 0.4142,
+  "pct": 0.2172,
+  "rank": 137
+ },
+ "55": {
+  "combos": 6,
+  "equity": 0.6072,
+  "pct": 0.8703,
+  "rank": 26
+ },
+ "62o": {
+  "combos": 12,
+  "equity": 0.3366,
+  "pct": 0.0181,
+  "rank": 167
+ },
+ "62s": {
+  "combos": 4,
+  "equity": 0.382,
+  "pct": 0.1297,
+  "rank": 152
+ },
+ "63o": {
+  "combos": 12,
+  "equity": 0.3618,
+  "pct": 0.0573,
+  "rank": 162
+ },
+ "63s": {
+  "combos": 4,
+  "equity": 0.3925,
+  "pct": 0.1448,
+  "rank": 149
+ },
+ "64o": {
+  "combos": 12,
+  "equity": 0.3801,
+  "pct": 0.1176,
+  "rank": 154
+ },
+ "64s": {
+  "combos": 4,
+  "equity": 0.413,
+  "pct": 0.2142,
+  "rank": 138
+ },
+ "65o": {
+  "combos": 12,
+  "equity": 0.3994,
+  "pct": 0.181,
+  "rank": 143
+ },
+ "65s": {
+  "combos": 4,
+  "equity": 0.4287,
+  "pct": 0.2745,
+  "rank": 128
+ },
+ "66": {
+  "combos": 6,
+  "equity": 0.6311,
+  "pct": 0.917,
+  "rank": 17
+ },
+ "72o": {
+  "combos": 12,
+  "equity": 0.3443,
+  "pct": 0.0362,
+  "rank": 165
+ },
+ "72s": {
+  "combos": 4,
+  "equity": 0.3851,
+  "pct": 0.1327,
+  "rank": 151
+ },
+ "73o": {
+  "combos": 12,
+  "equity": 0.3619,
+  "pct": 0.0664,
+  "rank": 161
+ },
+ "73s": {
+  "combos": 4,
+  "equity": 0.4032,
+  "pct": 0.19,
+  "rank": 142
+ },
+ "74o": {
+  "combos": 12,
+  "equity": 0.3895,
+  "pct": 0.1357,
+  "rank": 150
+ },
+ "74s": {
+  "combos": 4,
+  "equity": 0.4167,
+  "pct": 0.2293,
+  "rank": 135
+ },
+ "75o": {
+  "combos": 12,
+  "equity": 0.4057,
+  "pct": 0.1961,
+  "rank": 140
+ },
+ "75s": {
+  "combos": 4,
+  "equity": 0.443,
+  "pct": 0.3047,
+  "rank": 122
+ },
+ "76o": {
+  "combos": 12,
+  "equity": 0.4232,
+  "pct": 0.2534,
+  "rank": 131
+ },
+ "76s": {
+  "combos": 4,
+  "equity": 0.4547,
+  "pct": 0.3499,
+  "rank": 115
+ },
+ "77": {
+  "combos": 6,
+  "equity": 0.663,
+  "pct": 0.9608,
+  "rank": 9
+ },
+ "82o": {
+  "combos": 12,
+  "equity": 0.3666,
+  "pct": 0.0875,
+  "rank": 158
+ },
+ "82s": {
+  "combos": 4,
+  "equity": 0.3985,
+  "pct": 0.178,
+  "rank": 144
+ },
+ "83o": {
+  "combos": 12,
+  "equity": 0.3759,
+  "pct": 0.0965,
+  "rank": 157
+ },
+ "83s": {
+  "combos": 4,
+  "equity": 0.4042,
+  "pct": 0.1931,
+  "rank": 141
+ },
+ "84o": {
+  "combos": 12,
+  "equity": 0.3967,
+  "pct": 0.1569,
+  "rank": 147
+ },
+ "84s": {
+  "combos": 4,
+  "equity": 0.4198,
+  "pct": 0.2413,
+  "rank": 133
+ },
+ "85o": {
+  "combos": 12,
+  "equity": 0.4163,
+  "pct": 0.2202,
+  "rank": 136
+ },
+ "85s": {
+  "combos": 4,
+  "equity": 0.4532,
+  "pct": 0.3469,
+  "rank": 116
+ },
+ "86o": {
+  "combos": 12,
+  "equity": 0.431,
+  "pct": 0.2775,
+  "rank": 127
+ },
+ "86s": {
+  "combos": 4,
+  "equity": 0.4667,
+  "pct": 0.3952,
+  "rank": 108
+ },
+ "87o": {
+  "combos": 12,
+  "equity": 0.4523,
+  "pct": 0.3379,
+  "rank": 117
+ },
+ "87s": {
+  "combos": 4,
+  "equity": 0.4806,
+  "pct": 0.4344,
+  "rank": 101
+ },
+ "88": {
+  "combos": 6,
+  "equity": 0.6958,
+  "pct": 0.9683,
+  "rank": 7
+ },
+ "92o": {
+  "combos": 12,
+  "equity": 0.3928,
+  "pct": 0.1478,
+  "rank": 148
+ },
+ "92s": {
+  "combos": 4,
+  "equity": 0.4255,
+  "pct": 0.2715,
+  "rank": 129
+ },
+ "93o": {
+  "combos": 12,
+  "equity": 0.3984,
+  "pct": 0.1689,
+  "rank": 145
+ },
+ "93s": {
+  "combos": 4,
+  "equity": 0.4315,
+  "pct": 0.2866,
+  "rank": 126
+ },
+ "94o": {
+  "combos": 12,
+  "equity": 0.4071,
+  "pct": 0.2051,
+  "rank": 139
+ },
+ "94s": {
+  "combos": 4,
+  "equity": 0.4421,
+  "pct": 0.2986,
+  "rank": 124
+ },
+ "95o": {
+  "combos": 12,
+  "equity": 0.4217,
+  "pct": 0.2443,
+  "rank": 132
+ },
+ "95s": {
+  "combos": 4,
+  "equity": 0.4576,
+  "pct": 0.362,
+  "rank": 113
+ },
+ "96o": {
+  "combos": 12,
+  "equity": 0.4453,
+  "pct": 0.3258,
+  "rank": 119
+ },
+ "96s": {
+  "combos": 4,
+  "equity": 0.4714,
+  "pct": 0.4103,
+  "rank": 105
+ },
+ "97o": {
+  "combos": 12,
+  "equity": 0.4622,
+  "pct": 0.3861,
+  "rank": 109
+ },
+ "97s": {
+  "combos": 4,
+  "equity": 0.4919,
+  "pct": 0.4796,
+  "rank": 94
+ },
+ "98o": {
+  "combos": 12,
+  "equity": 0.4815,
+  "pct": 0.4374,
+  "rank": 100
+ },
+ "98s": {
+  "combos": 4,
+  "equity": 0.5064,
+  "pct": 0.5279,
+  "rank": 86
+ },
+ "99": {
+  "combos": 6,
+  "equity": 0.7217,
+  "pct": 0.9729,
+  "rank": 6
+ },
+ "A2o": {
+  "combos": 12,
+  "equity": 0.5536,
+  "pct": 0.6848,
+  "rank": 57
+ },
+ "A2s": {
+  "combos": 4,
+  "equity": 0.573,
+  "pct": 0.7647,
+  "rank": 45
+ },
+ "A3o": {
+  "combos": 12,
+  "equity": 0.5654,
+  "pct": 0.73,
+  "rank": 50
+ },
+ "A3s": {
+  "combos": 4,
+  "equity": 0.5815,
+  "pct": 0.81,
+  "rank": 38
+ },
+ "A4o": {
+  "combos": 12,
+  "equity": 0.5724,
+  "pct": 0.7466,
+  "rank": 47
+ },
+ "A4s": {
+  "combos": 4,
+  "equity": 0.5917,
+  "pct": 0.825,
+  "rank": 35
+ },
+ "A5o": {
+  "combos": 12,
+  "equity": 0.5761,
+  "pct": 0.7888,
+  "rank": 41
+ },
+ "A5s": {
+  "combos": 4,
+  "equity": 0.6021,
+  "pct": 0.8582,
+  "rank": 28
+ },
+ "A6o": {
+  "combos": 12,
+  "equity": 0.5735,
+  "pct": 0.7677,
+  "rank": 44
+ },
+ "A6s": {
+  "combos": 4,
+  "equity": 0.6015,
+  "pct": 0.8522,
+  "rank": 30
+ },
+ "A7o": {
+  "combos": 12,
+  "equity": 0.5881,
+  "pct": 0.816,
+  "rank": 36
+ },
+ "A7s": {
+  "combos": 4,
+  "equity": 0.6118,
+  "pct": 0.8929,
+  "rank": 23
+ },
+ "A8o": {
+  "combos": 12,
+  "equity": 0.5958,
+  "pct": 0.8281,
+  "rank": 34
+ },
+ "A8s": {
+  "combos": 4,
+  "equity": 0.6167,
+  "pct": 0.8959,
+  "rank": 22
+ },
+ "A9o": {
+  "combos": 12,
+  "equity": 0.608,
+  "pct": 0.8748,
+  "rank": 25
+ },
+ "A9s": {
+  "combos": 4,
+  "equity": 0.6226,
+  "pct": 0.902,
+  "rank": 20
+ },
+ "AA": {
+  "combos": 6,
+  "equity": 0.8492,
+  "pct": 0.9955,
+  "rank": 1
+ },
+ "AJo": {
+  "combos": 12,
+  "equity": 0.639,
+  "pct": 0.9246,
+  "rank": 15
+ },
+ "AJs": {
+  "combos": 4,
+  "equity": 0.6554,
+  "pct": 0.9457,
+  "rank": 12
+ },
+ "AKo": {
+  "combos": 12,
+  "equity": 0.6564,
+  "pct": 0.9487,
+  "rank": 11
+ },
+ "AKs": {
+  "combos": 4,
+  "equity": 0.6726,
+  "pct": 0.9653,
+  "rank": 8
+ },
+ "AQo": {
+  "combos": 12,
+  "equity": 0.6412,
+  "pct": 0.9336,
+  "rank": 14
+ },
+ "AQs": {
+  "combos": 4,
+  "equity": 0.6628,
+  "pct": 0.9578,
+  "rank": 10
+ },
+ "ATo": {
+  "combos": 12,
+  "equity": 0.6251,
+  "pct": 0.905,
+  "rank": 19
+ },
+ "ATs": {
+  "combos": 4,
+  "equity": 0.6413,
+  "pct": 0.9427,
+  "rank": 13
+ },
+ "J2o": {
+  "combos": 12,
+  "equity": 0.4449,
+  "pct": 0.3167,
+  "rank": 120
+ },
+ "J2s": {
+  "combos": 4,
+  "equity": 0.4689,
+  "pct": 0.4072,
+  "rank": 106
+ },
+ "J3o": {
+  "combos": 12,
+  "equity": 0.4567,
+  "pct": 0.3529,
+  "rank": 114
+ },
+ "J3s": {
+  "combos": 4,
+  "equity": 0.4859,
+  "pct": 0.4465,
+  "rank": 99
+ },
+ "J4o": {
+  "combos": 12,
+  "equity": 0.4593,
+  "pct": 0.365,
+  "rank": 112
+ },
+ "J4s": {
+  "combos": 4,
+  "equity": 0.4947,
+  "pct": 0.4827,
+  "rank": 93
+ },
+ "J5o": {
+  "combos": 12,
+  "equity": 0.4718,
+  "pct": 0.4133,
+  "rank": 104
+ },
+ "J5s": {
+  "combos": 4,
+  "equity": 0.4974,
+  "pct": 0.4857,
+  "rank": 92
+ },
+ "J6o": {
+  "combos": 12,
+  "equity": 0.4786,
+  "pct": 0.4253,
+  "rank": 102
+ },
+ "J6s": {
+  "combos": 4,
+  "equity": 0.5057,
+  "pct": 0.5249,
+  "rank": 87
+ },
+ "J7o": {
+  "combos": 12,
+  "equity": 0.501,
+  "pct": 0.5068,
+  "rank": 89
+ },
+ "J7s": {
+  "combos": 4,
+  "equity": 0.5295,
+  "pct": 0.6259,
+  "rank": 70
+ },
+ "J8o": {
+  "combos": 12,
+  "equity": 0.5141,
+  "pct": 0.5535,
+  "rank": 80
+ },
+ "J8s": {
+  "combos": 4,
+  "equity": 0.5415,
+  "pct": 0.6576,
+  "rank": 62
+ },
+ "J9o": {
+  "combos": 12,
+  "equity": 0.5293,
+  "pct": 0.6169,
+  "rank": 71
+ },
+ "J9s": {
+  "combos": 4,
+  "equity": 0.5513,
+  "pct": 0.6727,
+  "rank": 59
+ },
+ "JJ": {
+  "combos": 6,
+  "equity": 0.7776,
+  "pct": 0.9819,
+  "rank": 4
+ },
+ "JTo": {
+  "combos": 12,
+  "equity": 0.5561,
+  "pct": 0.6938,
+  "rank": 56
+ },
+ "JTs": {
+  "combos": 4,
+  "equity": 0.5698,
+  "pct": 0.7391,
+  "rank": 49
+ },
+ "K2o": {
+  "combos": 12,
+  "equity": 0.4993,
+  "pct": 0.4887,
+  "rank": 91
+ },
+ "K2s": {
+  "combos": 4,
+  "equity": 0.5318,
+  "pct": 0.629,
+  "rank": 69
+ },
+ "K3o": {
+  "combos": 12,
+  "equity": 0.518,
+  "pct": 0.5747,
+  "rank": 77
+ },
+ "K3s": {
+  "combos": 4,
+  "equity": 0.5363,
+  "pct": 0.6365,
+  "rank": 67
+ },
+ "K4o": {
+  "combos": 12,
+  "equity": 0.5224,
+  "pct": 0.5928,
+  "rank": 75
+ },
+ "K4s": {
+  "combos": 4,
+  "equity": 0.547,
+  "pct": 0.6606,
+  "rank": 61
+ },
+ "K5o": {
+  "combos": 12,
+  "equity": 0.5253,
+  "pct": 0.6078,
+  "rank": 72
+ },
+ "K5s": {
+  "combos": 4,
+  "equity": 0.5593,
+  "pct": 0.7119,
+  "rank": 54
+ },
+ "K6o": {
+  "combos": 12,
+  "equity": 0.5471,
+  "pct": 0.6637,
+  "rank": 60
+ },
+ "K6s": {
+  "combos": 4,
+  "equity": 0.5643,
+  "pct": 0.727,
+  "rank": 51
+ },
+ "K7o": {
+  "combos": 12,
+  "equity": 0.5569,
+  "pct": 0.7029,
+  "rank": 55
+ },
+ "K7s": {
+  "combos": 4,
+  "equity": 0.5756,
+  "pct": 0.7768,
+  "rank": 43
+ },
+ "K8o": {
+  "combos": 12,
+  "equity": 0.5611,
+  "pct": 0.7179,
+  "rank": 52
+ },
+ "K8s": {
+  "combos": 4,
+  "equity": 0.5832,
+  "pct": 0.813,
+  "rank": 37
+ },
+ "K9o": {
+  "combos": 12,
+  "equity": 0.5759,
+  "pct": 0.7798,
+  "rank": 42
+ },
+ "K9s": {
+  "combos": 4,
+  "equity": 0.5991,
+  "pct": 0.8462,
+  "rank": 32
+ },
+ "KJo": {
+  "combos": 12,
+  "equity": 0.6045,
+  "pct": 0.8612,
+  "rank": 27
+ },
+ "KJs": {
+  "combos": 4,
+  "equity": 0.6275,
+  "pct": 0.914,
+  "rank": 18
+ },
+ "KK": {
+  "combos": 6,
+  "equity": 0.8247,
+  "pct": 0.991,
+  "rank": 2
+ },
+ "KQo": {
+  "combos": 12,
+  "equity": 0.6084,
+  "pct": 0.8839,
+  "rank": 24
+ },
+ "KQs": {
+  "combos": 4,
+  "equity": 0.6377,
+  "pct": 0.9216,
+  "rank": 16
+ },
+ "KTo": {
+  "combos": 12,
+  "equity": 0.599,
+  "pct": 0.8371,
+  "rank": 33
+ },
+ "KTs": {
+  "combos": 4,
+  "equity": 0.621,
+  "pct": 0.8989,
+  "rank": 21
+ },
+ "Q2o": {
+  "combos": 12,
+  "equity": 0.467,
+  "pct": 0.3982,
+  "rank": 107
+ },
+ "Q2s": {
+  "combos": 4,
+  "equity": 0.5068,
+  "pct": 0.5309,
+  "rank": 85
+ },
+ "Q3o": {
+  "combos": 12,
+  "equity": 0.486,
+  "pct": 0.4495,
+  "rank": 98
+ },
+ "Q3s": {
+  "combos": 4,
+  "equity": 0.5091,
+  "pct": 0.537,
+  "rank": 83
+ },
+ "Q4o": {
+  "combos": 12,
+  "equity": 0.4886,
+  "pct": 0.4706,
+  "rank": 95
+ },
+ "Q4s": {
+  "combos": 4,
+  "equity": 0.5164,
+  "pct": 0.5716,
+  "rank": 78
+ },
+ "Q5o": {
+  "combos": 12,
+  "equity": 0.501,
+  "pct": 0.4977,
+  "rank": 90
+ },
+ "Q5s": {
+  "combos": 4,
+  "equity": 0.5242,
+  "pct": 0.6048,
+  "rank": 73
+ },
+ "Q6o": {
+  "combos": 12,
+  "equity": 0.514,
+  "pct": 0.5445,
+  "rank": 81
+ },
+ "Q6s": {
+  "combos": 4,
+  "equity": 0.5376,
+  "pct": 0.6486,
+  "rank": 65
+ },
+ "Q7o": {
+  "combos": 12,
+  "equity": 0.5183,
+  "pct": 0.5837,
+  "rank": 76
+ },
+ "Q7s": {
+  "combos": 4,
+  "equity": 0.5389,
+  "pct": 0.6516,
+  "rank": 64
+ },
+ "Q8o": {
+  "combos": 12,
+  "equity": 0.5375,
+  "pct": 0.6395,
+  "rank": 66
+ },
+ "Q8s": {
+  "combos": 4,
+  "equity": 0.5598,
+  "pct": 0.7149,
+  "rank": 53
+ },
+ "Q9o": {
+  "combos": 12,
+  "equity": 0.5517,
+  "pct": 0.6757,
+  "rank": 58
+ },
+ "Q9s": {
+  "combos": 4,
+  "equity": 0.5782,
+  "pct": 0.8069,
+  "rank": 39
+ },
+ "QJo": {
+  "combos": 12,
+  "equity": 0.5775,
+  "pct": 0.7979,
+  "rank": 40
+ },
+ "QJs": {
+  "combos": 4,
+  "equity": 0.6017,
+  "pct": 0.8552,
+  "rank": 29
+ },
+ "QQ": {
+  "combos": 6,
+  "equity": 0.8004,
+  "pct": 0.9864,
+  "rank": 3
+ },
+ "QTo": {
+  "combos": 12,
+  "equity": 0.5726,
+  "pct": 0.7557,
+  "rank": 46
+ },
+ "QTs": {
+  "combos": 4,
+  "equity": 0.6011,
+  "pct": 0.8492,
+  "rank": 31
+ },
+ "T2o": {
+  "combos": 12,
+  "equity": 0.418,
+  "pct": 0.2323,
+  "rank": 134
+ },
+ "T2s": {
+  "combos": 4,
+  "equity": 0.443,
+  "pct": 0.3017,
+  "rank": 123
+ },
+ "T3o": {
+  "combos": 12,
+  "equity": 0.425,
+  "pct": 0.2624,
+  "rank": 130
+ },
+ "T3s": {
+  "combos": 4,
+  "equity": 0.4516,
+  "pct": 0.3348,
+  "rank": 118
+ },
+ "T4o": {
+  "combos": 12,
+  "equity": 0.4345,
+  "pct": 0.2896,
+  "rank": 125
+ },
+ "T4s": {
+  "combos": 4,
+  "equity": 0.4618,
+  "pct": 0.3831,
+  "rank": 110
+ },
+ "T5o": {
+  "combos": 12,
+  "equity": 0.4432,
+  "pct": 0.3077,
+  "rank": 121
+ },
+ "T5s": {
+  "combos": 4,
+  "equity": 0.4735,
+  "pct": 0.4223,
+  "rank": 103
+ },
+ "T6o": {
+  "combos": 12,
+  "equity": 0.4603,
+  "pct": 0.3741,
+  "rank": 111
+ },
+ "T6s": {
+  "combos": 4,
+  "equity": 0.4882,
+  "pct": 0.4676,
+  "rank": 96
+ },
+ "T7o": {
+  "combos": 12,
+  "equity": 0.4861,
+  "pct": 0.4585,
+  "rank": 97
+ },
+ "T7s": {
+  "combos": 4,
+  "equity": 0.5087,
+  "pct": 0.5339,
+  "rank": 84
+ },
+ "T8o": {
+  "combos": 12,
+  "equity": 0.5024,
+  "pct": 0.5158,
+  "rank": 88
+ },
+ "T8s": {
+  "combos": 4,
+  "equity": 0.5232,
+  "pct": 0.6018,
+  "rank": 74
+ },
+ "T9o": {
+  "combos": 12,
+  "equity": 0.5148,
+  "pct": 0.5626,
+  "rank": 79
+ },
+ "T9s": {
+  "combos": 4,
+  "equity": 0.5398,
+  "pct": 0.6546,
+  "rank": 63
+ },
+ "TT": {
+  "combos": 6,
+  "equity": 0.7558,
+  "pct": 0.9774,
+  "rank": 5
+ }
+}
