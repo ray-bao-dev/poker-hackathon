@@ -153,8 +153,12 @@ DATA = _load()
 META = DATA["meta"] if DATA else None
 STRATEGY = DATA["strategy"] if DATA else {}
 # Best responses to specific opponent types, trained by train_cfr.py --opponent <type>.
+# The "random" table (cfr_random.json) is off: against the random bot it won 71% of
+# matches (60% when switched in on detection) vs 76% for the equilibrium. It wins more
+# chips per hand but takes far more all-in flips, which a freezeout punishes.
+EXPLOIT_MODES = ("hsr",)         # add "random" to play cfr_random.json once detected
 EXPLOIT_TABLES = {}
-for _name in ("random", "hsr"):
+for _name in EXPLOIT_MODES:
     _d = _load("cfr_%s.json" % _name)
     if _d:
         EXPLOIT_TABLES[_name] = (_d["meta"], _d["strategy"])
@@ -338,6 +342,11 @@ DEEP_SHOVE_DEPTH = classify(40, PRE_DEPTH)
 TIGHT_SHOVE_RANGE = eval7.HandRange("99+,AQs+,AKo")
 PRIOR_SHOVE, PRIOR_SHOVE_N = 0.1, 10
 WIDE_SHOVER = 0.3
+# Recent shoves: a bot that is shoving most of its preflop decisions right now (e.g. one
+# that switches styles every few hands) is shoving wide, whatever its match-long rate.
+# Facing such a shove, call by equity vs any two cards instead of the tight-range rule.
+PRE_RECENT = []                  # opponent's preflop decisions, oldest first: True = all-in
+RECENT_SHOVE_N, RECENT_SHOVE_RATE = 5, 0.6
 
 OPP = {"done": set(), "bet_strength": [], "folds": 0, "chances": 0, "pre_acts": 0, "pre_shoves": 0}
 BOARDS = {}             # hand_num -> the last board we saw in that hand
@@ -361,14 +370,24 @@ EXPLOIT_CONFIDENCE = 0.97        # play an exploit table only when its model is 
 # equilibrium (cfr.json), which already beats callers and the neural-net bots. Exploit
 # tables (e.g. "hsr") are only used once the opponent is identified as that type.
 DEFAULT_TABLE = ""
-LOGLIK = {k: math.log(v) for k, v in PROFILE_PRIOR.items()}
 SEEN = set()                     # (hand_num, index in hand) of opponent actions scored
-# Safety check: an exploit table is played only while the opponent's RECENT actions fit
-# its model too. A bot that acts like one type to trigger an exploit and then changes
-# style drops us back to the equilibrium within a few actions.
-RECENT_N = 10                    # falls back ~5 actions after a style change
-RECENT_CONFIDENCE = 0.3          # ~8% of decisions vs a true random bot drop out
-RECENT = []                      # per-action {model: log-probability}, oldest first
+
+# Style changes: Bayesian online change-point detection (Adams & MacKay 2007). The
+# opponent may switch style before any of its actions (with probability HAZARD). Each
+# "run" is a hypothesis "the current style started at action t", weighted by how well it
+# explains the actions since t; within a run the models are scored as usual. The model
+# posterior mixes the runs. A steady opponent keeps one long run (full-match evidence);
+# after a switch, a run starting at the switch takes over within a few actions, so we
+# enter an exploit quickly and leave it a action or two after the opponent stops fitting.
+HAZARD = 0.04                    # prior chance of a style change before each action (~25 actions)
+MAX_RUNS = 80                    # keep this many most-likely change points
+_LOG_PRIOR = {k: math.log(v) for k, v in PROFILE_PRIOR.items()}
+RUNS = [[0.0, dict(_LOG_PRIOR)]]  # [log weight, {model: log prior + log-likelihood since start}]
+
+
+def _lse(xs):
+    m = max(xs)
+    return m + math.log(sum(math.exp(x - m) for x in xs))
 
 
 def _score(action, facing, size):
@@ -378,9 +397,16 @@ def _score(action, facing, size):
         if action == "raise":
             p *= p_over if size >= OVERBET else 1 - p_over
         lp[name] = math.log(max(p, 1e-4))
-        LOGLIK[name] += lp[name]
-    RECENT.append(lp)
-    del RECENT[:-RECENT_N]
+    log_h, log_stay = math.log(HAZARD), math.log(1 - HAZARD)
+    grown, cp = [], []
+    for w, ll in RUNS:
+        pred = _lse([ll[k] + lp[k] for k in ll]) - _lse(list(ll.values()))   # log P(action | run)
+        grown.append([w + log_stay + pred, {k: ll[k] + lp[k] for k in ll}])
+        cp.append(w + log_h)
+    fresh = [_lse(cp) + _lse([_LOG_PRIOR[k] + lp[k] for k in lp]), {k: _LOG_PRIOR[k] + lp[k] for k in lp}]
+    runs = sorted([fresh] + grown, key=lambda r: -r[0])[:MAX_RUNS]
+    z = _lse([w for w, _ in runs])
+    RUNS[:] = [[w - z, ll] for w, ll in runs]
 
 
 def hsr_sizes(street, bb, cur, pot, owed, min_to):
@@ -416,10 +442,10 @@ def observe(entries, hn, opp_id):
         if b == opp_id and (hn, idx) not in SEEN:
             SEEN.add((hn, idx))
             _score(a, owed > 0, (amt - cur) / max(pot + owed, 1))
-            if a == "raise":
-                FINGERPRINT["n"] += 1
-                FINGERPRINT["hsr"] += any(abs(amt - x) <= 1 for x in
-                                          hsr_sizes(street, bb, cur, pot, owed, cur + lr))
+            if a == "raise":                    # decayed counts: recent raises matter most
+                hit = any(abs(amt - x) <= 1 for x in hsr_sizes(street, bb, cur, pot, owed, cur + lr))
+                FINGERPRINT["n"] = FINGERPRINT["n"] * FP_DECAY + 1
+                FINGERPRINT["hsr"] = FINGERPRINT["hsr"] * FP_DECAY + hit
         add = amt if a == "call" else (max(amt - mine, 0) if a in ("raise", "all_in") else 0)
         bets[b] = mine + add
         pot += add
@@ -433,12 +459,40 @@ def observe(entries, hn, opp_id):
 # the time, the neural-net bots 25-40%), so other bots keep the equilibrium. The hsr
 # table is a restricted Nash response, so it tolerates some bluffing; if hsr is seen
 # bluffing a lot at showdown (bets with weak hands), we go back to the equilibrium.
-FINGERPRINT = {"n": 0, "hsr": 0}
+FINGERPRINT = {"n": 0.0, "hsr": 0.0}
+FP_DECAY = 0.9                   # memory of about the last 10 raises, so a style change shows
 HSR_MIN_RAISES, HSR_SIZE_MATCH = 5, 0.95
 HSR_BLUFF_STRENGTH, HSR_MAX_BLUFFS = 0.4, 0.3
 
 
+# Losing-chips guard for the hsr table: if we lose HSR_STOP_LOSS_BB or more over the
+# hands played with it (at least HSR_STOP_MIN_HANDS), the table isn't working against this
+# opponent and we go back to the equilibrium for the rest of the match. Only for hsr: in the
+# random / shover modes pots are mostly all-in, so chip results there are mostly luck.
+HSR_STOP_LOSS_BB, HSR_STOP_MIN_HANDS = 100, 20
+MODE_RESULT = {}                 # mode -> [hands played, net big blinds]
+LAST_HAND = {"n": None, "stack": None, "bb": 1, "mode": None}
+DISABLED = set()
+
+
+def track_result(gs, start_stack):
+    """At the first decision of each hand, credit the last hand's result to its mode."""
+    n = gs.get("hand_num")
+    if n == LAST_HAND["n"]:
+        return
+    if LAST_HAND["n"] is not None and LAST_HAND["mode"]:
+        r = MODE_RESULT.setdefault(LAST_HAND["mode"], [0, 0.0])
+        r[0] += 1
+        r[1] += (start_stack - LAST_HAND["stack"]) / LAST_HAND["bb"]
+        h = MODE_RESULT.get("hsr")
+        if h and h[0] >= HSR_STOP_MIN_HANDS and h[1] <= -HSR_STOP_LOSS_BB:
+            DISABLED.add("hsr")
+    LAST_HAND.update(n=n, stack=start_stack, bb=gs["blinds"]["bb"] or 1, mode=None)
+
+
 def hsr_like():
+    if "hsr" in DISABLED:
+        return False
     fp = FINGERPRINT
     if fp["n"] < HSR_MIN_RAISES or fp["hsr"] < HSR_SIZE_MATCH * fp["n"]:
         return False
@@ -455,17 +509,13 @@ def _posterior(ll):
 
 
 def opponent_type():
-    """(most likely model over the match, its probability). A model that doesn't also
-    explain the last RECENT_N actions is reported as "normal" (the equilibrium)."""
-    post = _posterior(LOGLIK)
+    """(most likely current style, its probability), mixing over change points."""
+    post = dict.fromkeys(PROFILE_PRIOR, 0.0)
+    for w, ll in RUNS:
+        pw = math.exp(w)
+        for k, v in _posterior(ll).items():
+            post[k] += pw * v
     best = max(post, key=post.get)
-    if best != "normal" and RECENT:
-        ll = {k: math.log(v) for k, v in PROFILE_PRIOR.items()}
-        for lp in RECENT:
-            for k in ll:
-                ll[k] += lp[k]
-        if _posterior(ll)[best] < RECENT_CONFIDENCE:
-            return "normal", 0.0
     return best, post[best]
 
 
@@ -499,6 +549,7 @@ def update_model(gs, opp_id):
         for e in entries:                       # how often it shoves preflop
             if e["bot_id"] == opp_id and e["street"] == "preflop" and e["action"] in ("fold", "check", "call", "raise", "all_in"):
                 OPP["pre_acts"] += 1
+                PRE_RECENT.append(e["action"] == "all_in")
                 OPP["pre_shoves"] += e["action"] == "all_in"
         for i, e in enumerate(entries):         # opponent's answer to each of our postflop bets
             if e["bot_id"] == me and e["action"] in ("raise", "all_in") and e["street"] in ("flop", "turn", "river"):
@@ -647,17 +698,22 @@ def think(gs):
     if opp is None:
         return _safe(gs)
     update_model(gs, opp["bot_id"])
+    track_result(gs, replay(gs)["start"].get(me, gs["your_stack"]))
     kind, conf = opponent_type()
+    if "hsr" in EXPLOIT_TABLES and hsr_like():  # the size fingerprint is the surest evidence
+        kind, conf = "normal", 1.0
     if kind == "shover" and conf >= EXPLOIT_CONFIDENCE:     # solved exactly, no table needed
         info = {"opp": "%s %.2f" % (kind, conf)}
         act = vs_shover(gs, opp, info)
         act["debug"] = info
+        LAST_HAND["mode"] = "shover"
         return act
     mode = kind if conf >= EXPLOIT_CONFIDENCE and kind in EXPLOIT_TABLES else None
     if mode is None and kind == "normal" and "hsr" in EXPLOIT_TABLES and hsr_like():
         mode = "hsr"
     if mode is None and DEFAULT_TABLE in EXPLOIT_TABLES:
         mode = DEFAULT_TABLE                    # e.g. the hsr counter-strategy for ordinary bots
+    LAST_HAND["mode"] = mode
     meta, table = EXPLOIT_TABLES[mode] if mode else (META, STRATEGY)
     bb = gs["blinds"]["bb"] or 1
     rp = replay(gs, overbet=mode is not None)
@@ -681,10 +737,13 @@ def think(gs):
                              my_total, opp_total, rp["nraises"][s])
     seq = rp["seq"][s]
     info = {"key": infoset_key(s, pos, depth, init, bucket, seq), "eq": None if eq is None else round(eq, 3),
-            "opp": "%s %.2f" % (kind, conf), "fp": "%d/%d" % (FINGERPRINT["hsr"], FINGERPRINT["n"]),
+            "opp": "%s %.2f" % (kind, conf), "fp": "%.1f/%.1f" % (FINGERPRINT["hsr"], FINGERPRINT["n"]),
             "vb": len(OPP["bet_strength"])}
     if mode:
         info["mode"] = mode
+    if "hsr" in MODE_RESULT:
+        info["hsr_result"] = "%d hands %+.0f bb%s" % (MODE_RESULT["hsr"][0], MODE_RESULT["hsr"][1],
+                                                     " (stopped)" if "hsr" in DISABLED else "")
 
     row, d_used, i_used = lookup(s, pos, depth, init, bucket, seq, table) if table else (None, None, None)
     if row is None:
@@ -722,7 +781,16 @@ def think(gs):
     if s == 0 and depth >= DEEP_SHOVE_DEPTH and gs["amount_owed"] >= 0.4 * (gs["your_stack"] + gs["your_bet_this_street"]):
         shove_rate = (OPP["pre_shoves"] + PRIOR_SHOVE * PRIOR_SHOVE_N) / (OPP["pre_acts"] + PRIOR_SHOVE_N)
         info["shove_rate"] = round(shove_rate, 2)
-        if shove_rate < WIDE_SHOVER:            # facing a big preflop bet from a tight bot
+        opp_shoved = any(e["bot_id"] == opp["bot_id"] and e["action"] == "all_in"
+                         for e in gs.get("action_log") or [])
+        recent = PRE_RECENT[-(RECENT_SHOVE_N - 1):] + [opp_shoved]
+        if opp_shoved and sum(recent) >= RECENT_SHOVE_RATE * RECENT_SHOVE_N:
+            h = [eval7.Card(c) for c in gs["your_cards"]]
+            eq_w = eval7.py_hand_vs_range_monte_carlo(h, ALL_HANDS, [], 4000)
+            odds = pot_odds(gs["amount_owed"], gs["pot"], gs["your_stack"])
+            code = "c" if eq_w >= odds else "f"
+            info["vs_wide"] = round(eq_w, 2)
+        elif shove_rate < WIDE_SHOVER:          # facing a big preflop bet from a tight bot
             h = [eval7.Card(c) for c in gs["your_cards"]]
             eq_t = eval7.py_hand_vs_range_monte_carlo(h, TIGHT_SHOVE_RANGE, [], 4000)
             odds = pot_odds(gs["amount_owed"], gs["pot"], gs["your_stack"])

@@ -348,6 +348,7 @@ class Solver:
         self.opponent = opponent
         self.fixed_p = fixed_p
         self.risk_k = risk_k
+        self.table = {}      # key -> [codes list, regrets list, strategy sums list]
 
     def utility(self, v, S):
         """Chips won -> payoff. With risk_k > 0 (exploit tables only), the change in the
@@ -359,7 +360,6 @@ class Solver:
             return v
         x = min(max((S + v) / (2 * S), 0.0), 1.0)
         return S * ((1 - math.exp(-k * x)) - (1 - math.exp(-k * 0.5))) / (1 - math.exp(-k))
-        self.table = {}      # key -> [codes list, regrets list, strategy sums list]
 
     def node(self, key, codes):
         nd = self.table.get(key)
